@@ -1,0 +1,123 @@
+/* Reset some default browser styles */
+body, h1, h2, p, ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* Body Styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #e9ecef; /* Light gray background */
+    color: #343a40; /* Dark gray text */
+}
+
+/* Header Styles */
+header {
+    background: #495057; /* Darker gray for the header */
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Intro Section */
+.intro {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.intro h1 {
+    font-size: 2.5em;
+    color: #007BFF; /* Blue for the main title */
+}
+
+.intro p {
+    font-size: 1.2em;
+}
+
+/* Section Styles */
+section {
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+    background: #ffffff; /* White background for sections */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid #007BFF; /* Left border for emphasis */
+    transition: transform 0.3s ease; /* Smooth transform on hover */
+}
+
+section:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+}
+
+h2 {
+    margin-bottom: 15px;
+    color: #17a2b8; /* Teal color for section headings */
+    border-bottom: 2px solid #17a2b8; /* Underline for headings */
+    padding-bottom: 10px;
+}
+
+ul {
+    margin-left: 20px;
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background: #495057; /* Darker gray for the footer */
+    color: #fff;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Button Styles */
+.btn {
+    background: #007BFF; /* Blue button */
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease; /* Smooth transition for hover */
+}
+
+.btn:hover {
+    background: #0056b3; /* Darker blue on hover */
+}
+
+/* Link Styles */
+a {
+    color: #17a2b8; /* Teal color for links */
+    text-decoration: none;
+    transition: color 0.3s ease; /* Smooth transition for hover */
+}
+
+a:hover {
+    color: #0056b3; /* Darker blue on hover */
+}
+
+/* Certifications Section Styles */
+#certifications ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+#certifications p {
+    margin-top: 10px;
+}
