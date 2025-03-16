@@ -1,0 +1,14 @@
+[
+    {
+        "category": "Programming",
+        "items": ["Python"]
+    },
+    {
+        "category": "Frameworks",
+        "items": ["TensorFlow", "scikit-learn"]
+    },
+    {
+        "category": "Tools",
+        "items": ["Jupyter"]
+    }
+]
