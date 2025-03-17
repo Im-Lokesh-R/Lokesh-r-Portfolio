@@ -28,5 +28,11 @@
         "description": "Early Python projects created while learning the language.",
         "image": "assets/project4.jpg",
         "link": "https://github.com/Im-Lokesh-R/PYHTON_PROJECTS--Lokesh.git"
+    },
+    {
+        "title": "House Price Prediction",
+        "description": "Using California housing datasets , i trained a model that shows two different accuracy one is trained using all features another one is trained using reduced features !, which predicts an house price based on it's size , etc..",
+        "image": "assets/project5.jpg",
+        "link": "https://github.com/Im-Lokesh-R/House_price_predcition.git"
     }
 ]
