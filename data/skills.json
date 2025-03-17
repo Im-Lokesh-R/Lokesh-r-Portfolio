@@ -5,10 +5,10 @@
     },
     {
         "category": "Frameworks",
-        "items": ["TensorFlow", "scikit-learn"]
+        "items": ["TensorFlow", "scikit-learn", "Flask", "Django"]
     },
     {
         "category": "Tools",
-        "items": ["Jupyter"]
+        "items": ["Jupyter", "Pycharm"]
     }
 ]
