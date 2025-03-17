@@ -5,7 +5,11 @@
     },
     {
         "category": "Frameworks",
-        "items": ["TensorFlow", "scikit-learn", "Flask", "Django"]
+        "items": ["TensorFlow", "scikit-learn"]
+    },
+    {
+        "category": "Frameworks",
+        "items": ["Flask", "Django"]
     },
     {
         "category": "Tools",
