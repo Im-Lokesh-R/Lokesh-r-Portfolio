@@ -4,11 +4,11 @@
         "items": ["Python"]
     },
     {
-        "category": "Frameworks",
+        "category": "ML Frameworks",
         "items": ["TensorFlow", "scikit-learn"]
     },
     {
-        "category": "Frameworks",
+        "category": "Web Frameworks",
         "items": ["Flask", "Django"]
     },
     {
