@@ -24,19 +24,40 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(projects => {
             const container = document.getElementById("project-container");
             projects.forEach(project => {
+                const description = project.description;
+                const needsReadMore = description.split(" ").length > 20; // Arbitrary threshold for "long" text
                 const projectCard = `
                     <div class="col-md-4">
                         <div class="project-card">
                             <img src="${project.image}" alt="${project.title}">
                             <div class="card-body">
                                 <h5>${project.title}</h5>
-                                <p>${project.description}</p>
-                                <a href="${project.link}" target="_blank">View Project</a>
+                                <p class="description" data-full-text="${description}">${description}</p>
+                                ${needsReadMore ? '<a href="#" class="read-more">Read More</a>' : ''}
+                                <a href="${project.link}" target="_blank" class="btn">View Project</a>
                             </div>
                         </div>
                     </div>
                 `;
                 container.innerHTML += projectCard;
+            });
+
+            // Add Read More Functionality
+            document.querySelectorAll(".read-more").forEach(link => {
+                link.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    const description = link.previousElementSibling;
+                    const fullText = description.getAttribute("data-full-text");
+                    if (description.classList.contains("expanded")) {
+                        description.textContent = fullText;
+                        description.classList.remove("expanded");
+                        link.textContent = "Read More";
+                    } else {
+                        description.textContent = fullText;
+                        description.classList.add("expanded");
+                        link.textContent = "Read Less";
+                    }
+                });
             });
         })
         .catch(error => console.error("Error loading projects:", error));
