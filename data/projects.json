@@ -2,13 +2,13 @@
     {
         "title": "Handwritten Digit Recognition – Using MNIST dataset with CNN",
         "description": "A machine learning project using TensorFlow/Keras to recognize handwritten digits from the MNIST dataset.",
-        "image": "assets/project1.png",
+        "image": "assets/project3.png",
         "link": "https://github.com/Im-Lokesh-R/Handwritten_Digit_Recognition_Using_MNIST_dataset_with_CNN.git"
     },
     {
         "title": "Spam Email Classifier using NLP and scikit-learn",
         "description": "A natural language processing project to classify emails as spam or not using scikit-learn.",
-        "image": "assets/project2.png",
+        "image": "assets/project4.png",
         "link": "https://github.com/Im-Lokesh-R/Spam_Email_Classifier_using_NLP-scikit-learn.git"
     },
     {
@@ -20,13 +20,13 @@
     {
         "title": "Datasets Analysis",
         "description": "A collection of machine learning projects analyzing various datasets using Python.",
-        "image": "assets/project3.png",
+        "image": "assets/project1.png",
         "link": "https://github.com/Im-Lokesh-R/Python-MachineLearning-projects.git"
     },
     {
         "title": "Mini Projects using Python",
         "description": "Early Python projects created while learning the language.",
-        "image": "assets/project4.jpg",
+        "image": "assets/project2.jpg",
         "link": "https://github.com/Im-Lokesh-R/PYHTON_PROJECTS--Lokesh.git"
     },
     {
