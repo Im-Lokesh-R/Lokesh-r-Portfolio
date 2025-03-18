@@ -366,9 +366,28 @@ body {
     font-size: 1rem;
     color: #4c5e7a;
     margin-bottom: 15px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Truncate to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.5em; /* Consistent line height */
+    max-height: 3em; /* 2 lines * 1.5em */
 }
 
-.project-card a {
+.project-card .read-more {
+    color: #5e81ac;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.project-card .read-more:hover {
+    color: #88c0d0;
+}
+
+.project-card a.btn {
     background: #5e81ac;
     color: #fff;
     padding: 10px 25px;
@@ -376,9 +395,11 @@ body {
     text-decoration: none;
     font-weight: 600;
     transition: background 0.4s ease, transform 0.4s ease;
+    display: inline-block;
+    margin-top: 10px;
 }
 
-.project-card a:hover {
+.project-card a.btn:hover {
     background: #88c0d0;
     transform: scale(1.05);
 }
