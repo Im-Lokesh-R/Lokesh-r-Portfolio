@@ -34,5 +34,11 @@
         "description": "Using California housing datasets , i trained a model that shows two different accuracy one is trained using all features another one is trained using reduced features !, which predicts an house price based on it's size , etc..",
         "image": "assets/project5.jpg",
         "link": "https://github.com/Im-Lokesh-R/House_price_predcition.git"
+    },
+    {
+        "title": "ALICE AI ChatBot using google gemini api.",
+        "description": "In this project i used google's gemini ai's api of gemini-1.5-flash model and created an ai which can be smart as gemini ai and additionally i improved it to perform DOCUMNET and PPT creating with just promt from the user , where the user can simpley download it with out the need of building one .",
+        "image": "assets/project6.jpg",
+        "link": "https://github.com/Im-Lokesh-R/Alice_ai_using_api"
     }
 ]
