@@ -1,7 +1,7 @@
 [
     {
         "category": "Programming",
-        "items": ["Python"]
+        "items": ["Python","R"]
     },
     {
         "category": "ML Frameworks",
