@@ -18,6 +18,46 @@
             pointer-events: none;
             z-index: 10;
         }
+        /* Typing effect cursor */
+        .typing-cursor::after {
+            content: '|';
+            display: inline-block;
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        /* New animations for intro section */
+        @keyframes scale-up {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes staggered-slide-up {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pop-in {
+            from { opacity: 0; transform: scale(0.7); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .scale-up {
+            animation: scale-up 1s ease-out forwards;
+        }
+        .staggered-slide-up {
+            animation: staggered-slide-up 0.8s ease-out forwards;
+        }
+        .pop-in {
+            animation: pop-in 0.6s ease-out forwards;
+        }
+        /* Smooth hover transition for CTA buttons */
+        .cta-buttons .btn {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .cta-buttons .btn:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 <body>
@@ -44,13 +84,15 @@
     <section id="intro" class="hero position-relative">
         <canvas id="cursor-canvas"></canvas>
         <div class="container text-center">
-            <img src="assets/profile.jpg" alt="Lokesh R" class="profile-img animate-fade-in">
-            <h1 class="animate-slide-up">Lokesh R</h1>
-            <p class="tagline animate-slide-up" style="animation-delay: 0.2s;">Machine Learning Engineer | AI & NLP Specialist</p>
+            <img src="assets/profile.jpg" alt="Lokesh R" class="profile-img scale-up">
+            <h1 class="staggered-slide-up">Lokesh R</h1>
+            <p class="staggered-slide-up" style="animation-delay: 0.2s;">
+                <span id="typing-text" class="typing-cursor"></span>
+            </p>
             <div class="cta-buttons animate-slide-up" style="animation-delay: 0.4s;">
-                <a href="#projects" class="btn btn-primary" onclick="scrollToSection('projects')">View Projects</a>
-                <a href="assets/resume.pdf" class="btn btn-secondary" download>Download Resume</a>
-                <a href="https://lokeshrfreelance.netlify.app/" class="btn btn-primary">Freelance Landing Page</a>
+                <a href="#projects" class="btn btn-primary pop-in" onclick="scrollToSection('projects')" style="animation-delay: 0.5s;">View Projects</a>
+                <a href="assets/resume.pdf" class="btn btn-secondary pop-in" download style="animation-delay: 0.6s;">Download Resume</a>
+                <a href="https://lokeshrfreelance.netlify.app/" class="btn btn-primary pop-in" style="animation-delay: 0.7s;">Freelance Landing Page</a>
             </div>
         </div>
     </section>
@@ -125,6 +167,36 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
     <script>
+        // Typing effect
+        const typingText = document.getElementById('typing-text');
+        const phrases = ['Machine Learning Engineer', 'AI & NLP Specialist'];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+            if (isDeleting) {
+                typingText.textContent = currentPhrase.substring(0, charIndex--);
+                if (charIndex < 0) {
+                    isDeleting = false;
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                    setTimeout(type, 500);
+                } else {
+                    setTimeout(type, 50);
+                }
+            } else {
+                typingText.textContent = currentPhrase.substring(0, charIndex++);
+                if (charIndex > currentPhrase.length) {
+                    isDeleting = true;
+                    setTimeout(type, 2000);
+                } else {
+                    setTimeout(type, 100);
+                }
+            }
+        }
+        type();
+
         // Smooth drawing effect in intro section
         const canvas = document.getElementById('cursor-canvas');
         const ctx = canvas.getContext('2d');
