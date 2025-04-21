@@ -8,6 +8,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        #cursor-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -30,7 +41,8 @@
     </nav>
 
     <!-- Intro/Hero Section -->
-    <section id="intro" class="hero">
+    <section id="intro" class="hero position-relative">
+        <canvas id="cursor-canvas"></canvas>
         <div class="container text-center">
             <img src="assets/profile.jpg" alt="Lokesh R" class="profile-img animate-fade-in">
             <h1 class="animate-slide-up">Lokesh R</h1>
@@ -39,7 +51,6 @@
                 <a href="#projects" class="btn btn-primary" onclick="scrollToSection('projects')">View Projects</a>
                 <a href="assets/resume.pdf" class="btn btn-secondary" download>Download Resume</a>
                 <a href="https://lokeshrfreelance.netlify.app/" class="btn btn-primary">Freelance Landing Page</a>
-
             </div>
         </div>
     </section>
@@ -112,5 +123,95 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
+    <script>
+        // Smooth drawing effect in intro section
+        const canvas = document.getElementById('cursor-canvas');
+        const ctx = canvas.getContext('2d');
+        const introSection = document.getElementById('intro');
+
+        // Set canvas size
+        function resizeCanvas() {
+            canvas.width = introSection.offsetWidth;
+            canvas.height = introSection.offsetHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // Particle system for smooth trail
+        const particles = [];
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 5 + 2;
+                this.alpha = 1;
+                this.vx = (Math.random() - 0.5) * 2;
+                this.vy = (Math.random() - 0.5) * 2;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.alpha -= 0.02;
+                this.size *= 0.98;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(136, 192, 208, ${this.alpha})`; // Match theme color #88c0d0
+                ctx.fill();
+            }
+        }
+
+        let mouseX = 0;
+        let mouseY = 0;
+        let isDrawing = false;
+
+        // Track mouse movement
+        introSection.addEventListener('mousemove', (e) => {
+            const rect = introSection.getBoundingClientRect();
+            mouseX = e.clientX - rect.left;
+            mouseY = e.clientY - rect.top;
+            isDrawing = true;
+            // Add new particles
+            for (let i = 0; i < 3; i++) {
+                particles.push(new Particle(mouseX, mouseY));
+            }
+        });
+
+        introSection.addEventListener('mouseleave', () => {
+            isDrawing = false;
+        });
+
+        // Animation loop
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Update and draw particles
+            for (let i = particles.length - 1; i >= 0; i--) {
+                particles[i].update();
+                particles[i].draw();
+                if (particles[i].alpha <= 0 || particles[i].size <= 0.1) {
+                    particles.splice(i, 1);
+                }
+            }
+
+            // Draw smooth line connecting recent particles
+            if (particles.length > 1) {
+                ctx.beginPath();
+                ctx.moveTo(particles[0].x, particles[0].y);
+                for (let i = 1; i < particles.length; i++) {
+                    ctx.lineTo(particles[i].x, particles[i].y);
+                }
+                ctx.strokeStyle = 'rgba(136, 192, 208, 0.5)'; // Match theme color #88c0d0
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        // Start animation
+        animate();
+    </script>
 </body>
 </html>
