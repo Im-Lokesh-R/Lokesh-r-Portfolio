@@ -127,26 +127,27 @@ body {
 }
 
 /* =========================================
-   5. SECTIONS GENERAL
+   5. SECTIONS GENERAL (Fixed Centering)
    ========================================= */
 .section { padding: 100px 0; }
+
 .section h2 {
     font-weight: 800;
     color: var(--primary-color);
     margin-bottom: 50px;
     text-align: center;
     position: relative;
-    display: inline-block;
-    left: 50%;
-    transform: translateX(-50%);
+    display: block;      /* Changed from inline-block */
+    width: 100%;        /* Ensures it takes full width for text-align to work */
 }
 
 .section h2::after {
     content: '';
     display: block;
-    width: 60px; height: 4px;
+    width: 60px; 
+    height: 4px;
     background: var(--secondary-color);
-    margin: 10px auto 0;
+    margin: 15px auto 0; /* 'auto' handles the centering of the underline */
     border-radius: 2px;
 }
 
@@ -322,8 +323,14 @@ body {
 .timeline-item:nth-child(even)::after { left: -6.2%; }
 
 /* =========================================
-   9. CONTACT FORM
+   9. CONTACT FORM (Centered & Balanced)
    ========================================= */
+.contact-form {
+    max-width: 700px;   /* Prevents the form from being too wide on big screens */
+    margin: 0 auto;     /* Centers the form itself */
+    text-align: left;   /* Keeps labels/text inside the form looking tidy */
+}
+
 .contact-form input, .contact-form textarea {
     width: 100%;
     padding: 15px 20px;
@@ -366,3 +373,4 @@ body {
         right: auto !important;
     }
 }
+
