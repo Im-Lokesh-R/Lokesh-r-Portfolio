@@ -37,7 +37,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 const projectCard = `
                     <div class="col-md-4">
                         <div class="project-card">
-                            <img src="${project.image}" alt="${project.title}">
+                            <div class="img-wrapper">
+                                <img src="${project.image}" alt="${project.title}">
+                            </div>
+                            
                             <div class="card-body">
                                 <h5>${project.title}</h5>
                                 <p class="description" data-full-text="${description}">${description}</p>
