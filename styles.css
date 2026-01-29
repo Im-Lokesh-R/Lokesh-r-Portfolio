@@ -480,3 +480,21 @@ body {
     .timeline-item { width: 100%; margin: 0 auto 20px; }
     .timeline-item::before { display: none; }
 }
+.project-card .btn {
+    padding: 8px 15px; /* Slightly smaller to fit two buttons */
+    font-size: 0.9rem;
+}
+
+.btn-outline-primary {
+    border: 2px solid #5e81ac;
+    color: #5e81ac;
+    background: transparent;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-outline-primary:hover {
+    background: #5e81ac;
+    color: white;
+}
