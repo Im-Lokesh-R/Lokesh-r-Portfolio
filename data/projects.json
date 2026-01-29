@@ -9,7 +9,7 @@
     {
         "title": "Titanic Survival Predictor",
         "description": "A classic Machine Learning classification project predicting passenger survival using features like age, gender, and class with Scikit-Learn.",
-        "image": "assets/titanic.jpg",
+        "image": "assets/titanic.png",
         "link": "https://github.com/Im-Lokesh-R/Titanic-Survival-Predictor",
         "live_url": "https://lokeshrloki-titanic-predictor.hf.space"
     },
@@ -56,4 +56,5 @@
         "live_url": ""
     }
 ]
+
 
