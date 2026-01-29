@@ -1,5 +1,5 @@
 /* =========================================
-   1. General Styles & Root
+   1. General Styles
    ========================================= */
 body {
     font-family: 'Inter', sans-serif;
@@ -32,37 +32,9 @@ body {
     padding: 20px 0;
     transition: transform 0.3s ease;
 }
-
 .navbar.hidden { transform: translateY(-100%); }
-
-.navbar-brand {
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: #5e81ac !important;
-    transition: color 0.3s ease;
-}
-
-.navbar-brand:hover { color: #88c0d0 !important; }
-
-.nav-link {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #1e2a44 !important;
-    margin: 0 20px;
-    position: relative;
-    transition: color 0.3s ease;
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    width: 0; height: 2px;
-    background: #88c0d0;
-    bottom: -5px; left: 0;
-    transition: width 0.3s ease;
-}
-
-.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+.navbar-brand { font-size: 1.8rem; font-weight: 800; color: #5e81ac !important; }
+.nav-link { font-size: 1.1rem; font-weight: 600; color: #1e2a44 !important; margin: 0 20px; position: relative; }
 .nav-link:hover, .nav-link.active { color: #88c0d0 !important; }
 
 /* =========================================
@@ -75,52 +47,29 @@ body {
     position: relative;
     overflow: hidden;
 }
-
 .profile-img {
-    width: 160px; height: 160px;
-    border-radius: 50%;
+    width: 160px; height: 160px; border-radius: 50%;
     border: 5px solid rgba(255, 255, 255, 0.9);
-    margin-bottom: 25px;
-    object-fit: cover;
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    margin-bottom: 25px; object-fit: cover;
 }
-
-.profile-img:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-}
-
-.hero h1 {
-    font-size: 3.8rem;
-    font-weight: 800;
-    margin-bottom: 15px;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.cta-buttons .btn {
-    margin: 0 10px;
-    padding: 12px 30px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    border-radius: 50px;
-    transition: all 0.4s ease;
-}
-
-.btn-primary { background: #fff; color: #5e81ac; border: none; }
-.btn-primary:hover { background: #88c0d0; color: #fff; }
 
 /* =========================================
-   5. Projects Section (Updated for 2 Buttons)
+   5. Projects Section (The Fixed Part)
    ========================================= */
+#project-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .project-card {
     background: #fff;
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    height: 100%;
+    transition: transform 0.4s ease;
+    height: 100%; /* Force cards in a row to be equal height */
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Stack children vertically */
 }
 
 .project-card:hover {
@@ -138,95 +87,70 @@ body {
     padding: 25px;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    flex-grow: 1; /* This pushes the button container to the bottom */
 }
 
-.project-card h5 { font-weight: 800; color: #1e2a44; }
+.project-card h5 { 
+    font-weight: 800; 
+    color: #1e2a44;
+    margin-bottom: 15px;
+}
 
 .description {
     font-size: 0.95rem;
     color: #4c5e7a;
     line-height: 1.6;
+    margin-bottom: 10px;
 }
 
-/* Button Grouping */
+/* This is the key fix: The button container sticks to the bottom */
+.project-card .mt-3, 
+.project-card .mt-4 {
+    margin-top: auto !important; 
+    padding-top: 15px;
+}
+
 .project-card .btn-sm {
     padding: 8px 18px;
     font-weight: 600;
     border-radius: 25px;
-    font-size: 0.85rem;
 }
 
-.btn-outline-primary {
-    border: 2px solid #5e81ac;
-    color: #5e81ac;
-}
-
-.btn-outline-primary:hover {
-    background-color: #5e81ac;
-    color: white;
-}
+.btn-primary { background-color: #5e81ac; border: none; color: white; }
+.btn-outline-primary { border: 2px solid #5e81ac; color: #5e81ac; background: transparent; }
+.btn-outline-primary:hover { background: #5e81ac; color: #fff; }
 
 /* =========================================
    6. Live Overlay Styles
    ========================================= */
-#projectOverlay {
-    transition: opacity 0.3s ease;
-}
-
-#projectFrame {
-    box-shadow: 0 0 50px rgba(0,0,0,0.5);
-}
-
-.spinner-border {
-    width: 3rem;
-    height: 3rem;
-    color: #88c0d0;
-}
+#projectOverlay { z-index: 9999; }
+.spinner-border { color: #88c0d0; }
 
 /* =========================================
-   7. Skills & Experience
+   7. Sections & Timeline
    ========================================= */
-.skill-item {
-    background: #fff;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    text-align: center;
-    transition: 0.4s;
-}
-
-.skill-item:hover { transform: translateY(-10px); }
+.section { padding: 100px 0; }
+.bg-alt { background: #eef2f7; }
+.skill-item { background: #fff; padding: 25px; border-radius: 12px; text-align: center; }
 
 .timeline-item {
-    background: #fff;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    margin-bottom: 30px;
-    position: relative;
-    width: 45%;
+    background: #fff; padding: 25px; border-radius: 12px;
+    margin-bottom: 30px; width: 45%;
 }
 
 /* =========================================
    8. Contact & Footer
    ========================================= */
 .contact-form input, .contact-form textarea {
-    width: 100%; padding: 15px; margin-bottom: 20px;
-    border: none; border-radius: 8px; background: #fff;
+    width: 100%; padding: 15px; margin-bottom: 20px; border: none; border-radius: 8px;
 }
-
-.social-links a {
-    color: #5e81ac; font-size: 2rem; margin: 0 20px; transition: 0.4s;
-}
-
+.social-links a { color: #5e81ac; font-size: 2rem; margin: 0 20px; }
 .footer { background: #1e2a44; color: #fff; padding: 40px 0; }
 
 /* =========================================
    9. Responsive
    ========================================= */
 @media (max-width: 768px) {
-    .timeline::before { display: none; }
     .timeline-item { width: 100%; }
     .hero h1 { font-size: 2.5rem; }
 }
