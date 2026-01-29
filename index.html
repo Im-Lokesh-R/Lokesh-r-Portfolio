@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lokesh r portfolio</title>
+    <title>Lokesh R | Portfolio</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -18,7 +18,6 @@
             pointer-events: none;
             z-index: 10;
         }
-        /* Typing effect cursor */
         .typing-cursor::after {
             content: '|';
             display: inline-block;
@@ -28,7 +27,6 @@
             0%, 100% { opacity: 1; }
             50% { opacity: 0; }
         }
-        /* New animations for intro section */
         @keyframes scale-up {
             from { opacity: 0; transform: scale(0.8); }
             to { opacity: 1; transform: scale(1); }
@@ -41,16 +39,10 @@
             from { opacity: 0; transform: scale(0.7); }
             to { opacity: 1; transform: scale(1); }
         }
-        .scale-up {
-            animation: scale-up 1s ease-out forwards;
-        }
-        .staggered-slide-up {
-            animation: staggered-slide-up 0.8s ease-out forwards;
-        }
-        .pop-in {
-            animation: pop-in 0.6s ease-out forwards;
-        }
-        /* Smooth hover transition for CTA buttons */
+        .scale-up { animation: scale-up 1s ease-out forwards; }
+        .staggered-slide-up { animation: staggered-slide-up 0.8s ease-out forwards; }
+        .pop-in { animation: pop-in 0.6s ease-out forwards; }
+        
         .cta-buttons .btn {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -61,11 +53,10 @@
     </style>
 </head>
 <body>
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">Lokesh R</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -80,7 +71,6 @@
         </div>
     </nav>
 
-    <!-- Intro/Hero Section -->
     <section id="intro" class="hero position-relative">
         <canvas id="cursor-canvas"></canvas>
         <div class="container text-center">
@@ -90,13 +80,12 @@
                 <span id="typing-text" class="typing-cursor"></span>
             </p>
             <div class="cta-buttons animate-slide-up" style="animation-delay: 0.4s;">
-                <a href="#projects" class="btn btn-primary pop-in" onclick="scrollToSection('projects')" style="animation-delay: 0.5s;">View Projects</a>
+                <a href="#projects" class="btn btn-primary pop-in" style="animation-delay: 0.5s;">View Projects</a>
                 <a href="https://lokeshrfreelance.netlify.app/" class="btn btn-primary pop-in" style="animation-delay: 0.7s;">Freelance Landing Page</a>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
     <section id="skills" class="section">
         <div class="container">
             <h2 class="animate-fade-in">Technical Skills</h2>
@@ -104,7 +93,6 @@
         </div>
     </section>
 
-    <!-- Experience Section -->
     <section id="experience" class="section bg-alt">
         <div class="container">
             <h2 class="animate-fade-in">Experience & Expertise</h2>
@@ -129,7 +117,6 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section id="projects" class="section">
         <div class="container">
             <h2 class="animate-fade-in">Selected Projects</h2>
@@ -137,7 +124,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="section bg-alt">
         <div class="container text-center">
             <h2 class="animate-fade-in">Get in Touch</h2>
@@ -156,7 +142,19 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <div id="projectOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:9999;">
+        <div style="position:relative; width:95%; height:90%; margin:2% auto;">
+            <button onclick="closeProject()" class="btn btn-light" style="position:absolute; top:-45px; right:0; border-radius: 50px;">
+                <i class="fas fa-times"></i> Close Project
+            </button>
+            <div id="loading-spinner" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); color:white; text-align:center;">
+                <div class="spinner-border" role="status"></div>
+                <p class="mt-2">Loading ML Model...</p>
+            </div>
+            <iframe id="projectFrame" src="" style="width:100%; height:100%; border-radius:15px; background:white; display:none;" frameborder="0" onload="document.getElementById('loading-spinner').style.display='none'; this.style.display='block';"></iframe>
+        </div>
+    </div>
+
     <footer class="footer">
         <div class="container text-center animate-fade-in">
             <p>© 2024 Lokesh R | Machine Learning Portfolio</p>
@@ -166,12 +164,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
     <script>
-        // Typing effect
+        // Typing effect logic
         const typingText = document.getElementById('typing-text');
         const phrases = ['Machine Learning Engineer', 'AI & NLP Specialist'];
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
+        let phraseIndex = 0; let charIndex = 0; let isDeleting = false;
 
         function type() {
             const currentPhrase = phrases[phraseIndex];
@@ -181,27 +177,22 @@
                     isDeleting = false;
                     phraseIndex = (phraseIndex + 1) % phrases.length;
                     setTimeout(type, 500);
-                } else {
-                    setTimeout(type, 50);
-                }
+                } else { setTimeout(type, 50); }
             } else {
                 typingText.textContent = currentPhrase.substring(0, charIndex++);
                 if (charIndex > currentPhrase.length) {
                     isDeleting = true;
                     setTimeout(type, 2000);
-                } else {
-                    setTimeout(type, 100);
-                }
+                } else { setTimeout(type, 100); }
             }
         }
         type();
 
-        // Smooth drawing effect in intro section
+        // Canvas Particle Trail logic
         const canvas = document.getElementById('cursor-canvas');
         const ctx = canvas.getContext('2d');
         const introSection = document.getElementById('intro');
 
-        // Set canvas size
         function resizeCanvas() {
             canvas.width = introSection.offsetWidth;
             canvas.height = introSection.offsetHeight;
@@ -209,88 +200,45 @@
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
-        // Particle system for smooth trail
         const particles = [];
         class Particle {
             constructor(x, y) {
-                this.x = x;
-                this.y = y;
+                this.x = x; this.y = y;
                 this.size = Math.random() * 5 + 2;
                 this.alpha = 1;
                 this.vx = (Math.random() - 0.5) * 2;
                 this.vy = (Math.random() - 0.5) * 2;
             }
             update() {
-                this.x += this.vx;
-                this.y += this.vy;
+                this.x += this.vx; this.y += this.vy;
                 this.alpha -= 0.02;
                 this.size *= 0.98;
             }
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(136, 192, 208, ${this.alpha})`; // Match theme color #88c0d0
+                ctx.fillStyle = `rgba(136, 192, 208, ${this.alpha})`;
                 ctx.fill();
             }
         }
 
-        let mouseX = 0;
-        let mouseY = 0;
-        let isDrawing = false;
-
-        // Track mouse movement
         introSection.addEventListener('mousemove', (e) => {
             const rect = introSection.getBoundingClientRect();
-            mouseX = e.clientX - rect.left;
-            mouseY = e.clientY - rect.top;
-            isDrawing = true;
-            // Add new particles
             for (let i = 0; i < 3; i++) {
-                particles.push(new Particle(mouseX, mouseY));
+                particles.push(new Particle(e.clientX - rect.left, e.clientY - rect.top));
             }
         });
 
-        introSection.addEventListener('mouseleave', () => {
-            isDrawing = false;
-        });
-
-        // Animation loop
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // Update and draw particles
             for (let i = particles.length - 1; i >= 0; i--) {
                 particles[i].update();
                 particles[i].draw();
-                if (particles[i].alpha <= 0 || particles[i].size <= 0.1) {
-                    particles.splice(i, 1);
-                }
+                if (particles[i].alpha <= 0) particles.splice(i, 1);
             }
-
-            // Draw smooth line connecting recent particles
-            if (particles.length > 1) {
-                ctx.beginPath();
-                ctx.moveTo(particles[0].x, particles[0].y);
-                for (let i = 1; i < particles.length; i++) {
-                    ctx.lineTo(particles[i].x, particles[i].y);
-                }
-                ctx.strokeStyle = 'rgba(136, 192, 208, 0.5)'; // Match theme color #88c0d0
-                ctx.lineWidth = 2;
-                ctx.stroke();
-            }
-
             requestAnimationFrame(animate);
         }
-
-        // Start animation
         animate();
     </script>
-    <div id="projectOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999;">
-    <div style="position:relative; width:90%; height:90%; margin:2% auto;">
-        <button onclick="closeProject()" class="btn btn-light" style="position:absolute; top:-40px; right:0;">&times; Close Project</button>
-        <iframe id="projectFrame" src="" style="width:100%; height:100%; border-radius:10px; background:white;" frameborder="0"></iframe>
-    </div>
-</div>
 </body>
 </html>
-
