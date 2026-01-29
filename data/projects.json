@@ -41,4 +41,14 @@
         "image": "assets/project6.png",
         "link": "https://github.com/Im-Lokesh-R/Alice_ai_using_api"
     }
+    [
+  {
+    "title": "Titanic Survival Predictor",
+    "description": "A machine learning model to predict survival chances...",
+    "image": "assets/titanic.jpg",
+    "link": "https://github.com/your-username/titanic",
+    "live_url": "https://huggingface.co/spaces/YOUR_USER/TITANIC_SPACE"
+  }
 ]
+]
+
