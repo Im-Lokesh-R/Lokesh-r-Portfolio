@@ -1,53 +1,58 @@
 [
     {
-        "title": "Handwritten Digit Recognition – Using MNIST dataset with CNN",
-        "description": "A machine learning project using TensorFlow/Keras to recognize handwritten digits from the MNIST dataset.",
+        "title": "ALICE AI ChatBot (Gemini API)",
+        "description": "An advanced AI assistant using Gemini 1.5 Flash. Beyond chat, it automates Document and PPT generation directly from user prompts for instant download.",
+        "image": "assets/project6.png",
+        "link": "https://github.com/Im-Lokesh-R/Alice_ai_using_api",
+        "live_url": "ADD_LIVE_URL_HERE"
+    },
+    {
+        "title": "Titanic Survival Predictor",
+        "description": "A classic Machine Learning classification project predicting passenger survival using features like age, gender, and class with Scikit-Learn.",
+        "image": "assets/titanic.jpg",
+        "link": "https://github.com/Im-Lokesh-R/Titanic-Survival-Predictor",
+        "live_url": "https://huggingface.co/spaces/YOUR_USER/TITANIC_SPACE"
+    },
+    {
+        "title": "Handwritten Digit Recognition",
+        "description": "Computer Vision project using a Convolutional Neural Network (CNN) and TensorFlow/Keras to achieve high accuracy on the MNIST digit dataset.",
         "image": "assets/project3.png",
-        "link": "https://github.com/Im-Lokesh-R/Handwritten_Digit_Recognition_Using_MNIST_dataset_with_CNN.git"
-    },
-    {
-        "title": "Spam Email Classifier using NLP and scikit-learn",
-        "description": "A natural language processing project to classify emails as spam or not using scikit-learn.",
-        "image": "assets/project4.jpg",
-        "link": "https://github.com/Im-Lokesh-R/Spam_Email_Classifier_using_NLP-scikit-learn.git"
-    },
-    {
-        "title": "Iris And Wine Model Training Using train_test_split.",
-        "description": "In this project i analyzed the iris and wine datasets from the sklearn models to have a deep understanding of Machine Learning!!",
-        "image": "assets/project3.png",
-        "link": "https://github.com/Im-Lokesh-R/Iris_and_wine_model_train.git"
-    },
-    {
-        "title": "Datasets Analysis",
-        "description": "A collection of machine learning projects analyzing various datasets using Python.",
-        "image": "assets/project1.png",
-        "link": "https://github.com/Im-Lokesh-R/Python-MachineLearning-projects.git"
-    },
-    {
-        "title": "Mini Projects using Python",
-        "description": "Early Python projects created while learning the language.",
-        "image": "assets/project2.png",
-        "link": "https://github.com/Im-Lokesh-R/PYHTON_PROJECTS--Lokesh.git"
+        "link": "https://github.com/Im-Lokesh-R/Handwritten_Digit_Recognition_Using_MNIST_dataset_with_CNN.git",
+        "live_url": "ADD_LIVE_URL_HERE"
     },
     {
         "title": "House Price Prediction",
-        "description": "Using California housing datasets , i trained a model that shows two different accuracy one is trained using all features another one is trained using reduced features !, which predicts an house price based on it's size , etc..",
+        "description": "Predictive modeling using the California housing dataset. Features a comparison between full-feature training and dimensionality reduction for accuracy analysis.",
         "image": "assets/project5.jpg",
-        "link": "https://github.com/Im-Lokesh-R/House_price_predcition.git"
+        "link": "https://github.com/Im-Lokesh-R/House_price_predcition.git",
+        "live_url": "ADD_LIVE_URL_HERE"
     },
     {
-        "title": "ALICE AI ChatBot using google gemini api.",
-        "description": "In this project i used google's gemini ai's api of gemini-1.5-flash model and created an ai which can be smart as gemini ai and additionally i improved it to perform DOCUMNET and PPT creating with just promt from the user , where the user can simpley download it with out the need of building one .",
-        "image": "assets/project6.png",
-        "link": "https://github.com/Im-Lokesh-R/Alice_ai_using_api"
+        "title": "Spam Email Classifier",
+        "description": "Natural Language Processing (NLP) application that utilizes Scikit-Learn to filter and classify emails as spam or ham based on text patterns.",
+        "image": "assets/project4.jpg",
+        "link": "https://github.com/Im-Lokesh-R/Spam_Email_Classifier_using_NLP-scikit-learn.git",
+        "live_url": "ADD_LIVE_URL_HERE"
     },
-  {
-    "title": "Titanic Survival Predictor",
-    "description": "A machine learning model to predict survival chances...",
-    "image": "assets/titanic.jpg",
-    "link": "https://github.com/your-username/titanic",
-    "live_url": "https://huggingface.co/spaces/YOUR_USER/TITANIC_SPACE"
-  }
+    {
+        "title": "Iris & Wine Model Training",
+        "description": "Deep dive into model evaluation using train_test_split on Sklearn’s Iris and Wine datasets to master classification fundamentals.",
+        "image": "assets/project3.png",
+        "link": "https://github.com/Im-Lokesh-R/Iris_and_wine_model_train.git",
+        "live_url": ""
+    },
+    {
+        "title": "Advanced Dataset Analysis",
+        "description": "A comprehensive repository showcasing exploratory data analysis (EDA) and visualization techniques across various real-world datasets.",
+        "image": "assets/project1.png",
+        "link": "https://github.com/Im-Lokesh-R/Python-MachineLearning-projects.git",
+        "live_url": ""
+    },
+    {
+        "title": "Python Programming Suite",
+        "description": "A collection of mini-projects and automation scripts developed while mastering Python core concepts and logic.",
+        "image": "assets/project2.png",
+        "link": "https://github.com/Im-Lokesh-R/PYHTON_PROJECTS--Lokesh.git",
+        "live_url": ""
+    }
 ]
-
-
