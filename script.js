@@ -19,28 +19,53 @@ document.addEventListener("DOMContentLoaded", () => {
         .catch(error => console.error("Error loading skills:", error));
 
     // Load Projects
-    fetch("data/projects.json")
-        .then(response => response.json())
-        .then(projects => {
-            const container = document.getElementById("project-container");
-            projects.forEach(project => {
-                const description = project.description;
-                const needsReadMore = description.split(" ").length > 20; // Arbitrary threshold for "long" text
-                const projectCard = `
-                    <div class="col-md-4">
-                        <div class="project-card">
-                            <img src="${project.image}" alt="${project.title}">
-                            <div class="card-body">
-                                <h5>${project.title}</h5>
-                                <p class="description" data-full-text="${description}">${description}</p>
-                                ${needsReadMore ? '<a href="#" class="read-more">Read More</a>' : ''}
-                                <a href="${project.link}" target="_blank" class="btn">View Project</a>
+fetch("data/projects.json")
+    .then(response => response.json())
+    .then(projects => {
+        const container = document.getElementById("project-container");
+        projects.forEach(project => {
+            const description = project.description;
+            const needsReadMore = description.split(" ").length > 20;
+
+            // Check if live_url exists to show the "Run Live" button
+            const liveBtn = project.live_url 
+                ? `<button class="btn btn-outline-primary ms-2" onclick="openProject('${project.live_url}')"><i class="fas fa-play"></i> Run Live</button>` 
+                : '';
+
+            const projectCard = `
+                <div class="col-md-4">
+                    <div class="project-card">
+                        <img src="${project.image}" alt="${project.title}">
+                        <div class="card-body">
+                            <h5>${project.title}</h5>
+                            <p class="description" data-full-text="${description}">${description}</p>
+                            ${needsReadMore ? '<a href="#" class="read-more">Read More</a>' : ''}
+                            <div class="mt-3">
+                                <a href="${project.link}" target="_blank" class="btn btn-primary"><i class="fab fa-github"></i> Code</a>
+                                ${liveBtn}
                             </div>
                         </div>
                     </div>
-                `;
-                container.innerHTML += projectCard;
-            });
+                </div>
+            `;
+            container.innerHTML += projectCard;
+        });
+
+        // Re-attach Read More events (keep your existing read-more code here)
+    });
+
+// Overlay Functions
+function openProject(url) {
+    document.getElementById('projectFrame').src = url;
+    document.getElementById('projectOverlay').style.display = 'block';
+    document.body.style.overflow = 'hidden'; // Stop scrolling
+}
+
+function closeProject() {
+    document.getElementById('projectOverlay').style.display = 'none';
+    document.getElementById('projectFrame').src = ""; // Stop the app
+    document.body.style.overflow = 'auto'; // Enable scrolling
+}
 
             // Add Read More Functionality
             document.querySelectorAll(".read-more").forEach(link => {
@@ -100,3 +125,4 @@ function scrollToSection(sectionId) {
     const section = document.getElementById(sectionId);
     section.scrollIntoView({ behavior: "smooth" });
 }
+
