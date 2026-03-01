@@ -34,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- 3. Navbar Scroll Behavior ---
     const navbar = document.querySelector(".navbar");
     let lastScroll = 0;
-
     window.addEventListener("scroll", () => {
         const currentScroll = window.scrollY;
         if (navbar) {
@@ -50,14 +49,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // --- 4. Filter Logic ---
 window.filterProjects = function(category, btnElement) {
-    // Remove active class from all buttons
     const buttons = document.querySelectorAll('.filter-btn');
     buttons.forEach(btn => btn.classList.remove('active'));
-    
-    // Add active class to clicked button
     if (btnElement) btnElement.classList.add('active');
-
-    // Render new list
     renderProjects(category);
 };
 
@@ -66,7 +60,7 @@ function renderProjects(category) {
     const container = document.getElementById("project-container");
     if (!container) return;
     
-    container.innerHTML = ""; // Clear current cards
+    container.innerHTML = ""; 
 
     const filteredProjects = category === 'all' 
         ? allProjects 
@@ -76,16 +70,22 @@ function renderProjects(category) {
         const description = project.description || "";
         const needsReadMore = description.split(" ").length > 20;
 
-        // --- DYNAMIC BUTTON LOGIC ---
+        // --- MEDIA LOGIC (IMAGE VS VIDEO) ---
+        // If "video" exists in JSON, use a video tag. Otherwise, use img.
+        const mediaHTML = project.video 
+            ? `<video autoplay loop muted playsinline class="project-media">
+                <source src="${project.video}" type="video/mp4">
+               </video>`
+            : `<img src="${project.image}" alt="${project.title}" class="project-media">`;
+
+        // --- BUTTON LOGIC ---
         let primaryBtn;
         if (project.category === 'ml') {
-            // ML projects show the Code/GitHub link
             primaryBtn = `
                 <a href="${project.link}" target="_blank" class="btn btn-primary btn-sm">
                     <i class="fab fa-github"></i> Code
                 </a>`;
         } else {
-            // 3D/Design projects show a View button instead of Code
             primaryBtn = `
                 <button class="btn btn-primary btn-sm" onclick="viewImage('${project.image}')">
                     <i class="fas fa-eye"></i> View
@@ -106,9 +106,8 @@ function renderProjects(category) {
                 <div class="project-card animate-zoom-in">
                     <span class="category-badge">${badgeText}</span>
                     <div class="img-wrapper">
-                        <img src="${project.image}" alt="${project.title}">
+                        ${mediaHTML}
                     </div>
-                    
                     <div class="card-body">
                         <h5>${project.title}</h5>
                         <p class="description" data-full-text="${description}">${description}</p>
@@ -127,7 +126,7 @@ function renderProjects(category) {
     attachReadMoreListeners();
 }
 
-// --- 6. Read More Logic Helper ---
+// --- 6. Read More Helper ---
 function attachReadMoreListeners() {
     document.querySelectorAll(".read-more").forEach(link => {
         link.addEventListener("click", (e) => {
@@ -148,13 +147,12 @@ function attachReadMoreListeners() {
     });
 }
 
-// --- 7. Helper for Viewing Images ---
+// --- 7. View Image Helper ---
 window.viewImage = function(imagePath) {
-    // Opens the image in a new tab for a high-quality look
     window.open(imagePath, '_blank');
 };
 
-// --- 8. Global Functions for Project Overlay (ML Apps) ---
+// --- 8. Overlay Logic ---
 window.openProject = function(url) {
     const overlay = document.getElementById('projectOverlay');
     const frame = document.getElementById('projectFrame');
@@ -177,7 +175,6 @@ window.openProject = function(url) {
 window.closeProject = function() {
     const overlay = document.getElementById('projectOverlay');
     const frame = document.getElementById('projectFrame');
-
     if(overlay && frame) {
         overlay.style.display = 'none';
         frame.src = ""; 
