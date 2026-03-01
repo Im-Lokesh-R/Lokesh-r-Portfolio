@@ -117,12 +117,21 @@
         </div>
     </section>
 
-    <section id="projects" class="section">
-        <div class="container">
-            <h2 class="animate-fade-in">Selected Projects</h2>
-            <div class="row" id="project-container"></div>
+<section id="projects" class="section">
+    <div class="container">
+        <h2 class="animate-fade-in">Selected Projects</h2>
+        
+        <div class="filter-container animate-slide-up" style="animation-delay: 0.2s;">
+            <button class="filter-btn active" onclick="filterProjects('all', this)">All</button>
+            <button class="filter-btn" onclick="filterProjects('ml', this)">AI & ML</button>
+            <button class="filter-btn" onclick="filterProjects('3d', this)">3D Modeling</button>
+            <button class="filter-btn" onclick="filterProjects('design', this)">Design</button>
         </div>
-    </section>
+
+        <div class="row g-4" id="project-container">
+            </div>
+    </div>
+</section>
 
     <section id="contact" class="section bg-alt">
         <div class="container text-center">
@@ -242,5 +251,6 @@
     </script>
 </body>
 </html>
+
 
 
