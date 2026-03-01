@@ -16,10 +16,18 @@
     "live_url": ""
   },
   {
-    "title": "perfume",
+    "title": "Perfume",
     "category": "3d",
-    "description": "A stylized 3D scene modeled in Blender, exploring lighting and isometric perspectives with glass like feel.",
+    "description": "A stylized 3D scene modeled in Blender, of a Perfume bottle wiht CYCLE render wiht glosy effect.",
     "image": "assets/perfume.png",
+    "link": "#",
+    "live_url": ""
+  },
+  {
+    "title": "River",
+    "category": "3d",
+    "description": "A stylized 3D scene modeled in Blender of a river water flowing.",
+    "image": "assets/river.png",
     "link": "#",
     "live_url": ""
   },
@@ -33,5 +41,6 @@
   "live_url": ""
 }
 ]
+
 
 
