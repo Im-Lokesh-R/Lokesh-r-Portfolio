@@ -8,17 +8,33 @@
     "live_url": "https://lokeshrloki-titanic-predictor.hf.space"
   },
   {
-    "title": "Minimalist Brand Identity",
+    "title": "Poster",
     "category": "design",
-    "description": "A series of geometric logo designs created in Affinity Designer, focusing on negative space and vector precision.",
-    "image": "assets/design-portfolio.png",
-    "link": "https://github.com/Im-Lokesh-R",
+    "description": "A poster designs created in Affinity Designer, focusing on anime manga pannel wiht a person photo with aesthetic vibe.",
+    "image": "assets/second_.png",
+    "link": "#",
+    "live_url": ""
+  },
+    {
+    "title": "Poster",
+    "category": "design",
+    "description": "A poster designs created in Affinity Designer, focusing on anime manga pannel wiht mixed color vibe.",
+    "image": "assets/sixth_.png",
+    "link": "#",
+    "live_url": ""
+  },
+      {
+    "title": "Poster",
+    "category": "design",
+    "description": "A poster designs created in Affinity Designer, focusing on anime charecter .",
+    "image": "assets/fourth_.png",
+    "link": "#",
     "live_url": ""
   },
   {
     "title": "Perfume",
     "category": "3d",
-    "description": "A stylized 3D scene modeled in Blender, of a Perfume bottle wiht CYCLE render wiht glosy effect.",
+    "description": "A stylized 3D scene modeled in Blender, of a Perfume bottle wiht CYCLE render with glosy effect.",
     "image": "assets/perfume.png",
     "link": "#",
     "live_url": ""
@@ -32,7 +48,7 @@
     "live_url": ""
   },
   {
-  "title": "Rain + Storm",
+  "title": "Rain + Storm (Animation)",
   "category": "3d",
   "description": "A  animation of a Strom wiht heavy  Rain modeled and rendered in Blender wiht EEVEE render.",
   "image": "assets/rain_strom.png", 
@@ -41,6 +57,7 @@
   "live_url": ""
 }
 ]
+
 
 
 
