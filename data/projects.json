@@ -51,12 +51,13 @@
   "title": "Rain + Storm (Animation)",
   "category": "3d",
   "description": "A  animation of a Strom wiht heavy  Rain modeled and rendered in Blender wiht EEVEE render.",
-  "image": "assets/rain_strom.png", 
+  "image": "assets/ocean_strom.png", 
   "video": "https://res.cloudinary.com/dgyo3a0hy/video/upload/v1772341835/Ocean-StromRain_jwzzst.mov",
-  "link": "#",
+  "link": "https://res.cloudinary.com/dgyo3a0hy/video/upload/v1772341835/Ocean-StromRain_jwzzst.mov",
   "live_url": ""
 }
 ]
+
 
 
 
