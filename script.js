@@ -71,7 +71,6 @@ function renderProjects(category) {
         const needsReadMore = description.split(" ").length > 20;
 
         // --- MEDIA LOGIC (IMAGE VS VIDEO) ---
-        // If "video" exists in JSON, use a video tag. Otherwise, use img.
         const mediaHTML = project.video 
             ? `<video autoplay loop muted playsinline class="project-media">
                 <source src="${project.video}" type="video/mp4">
@@ -86,8 +85,10 @@ function renderProjects(category) {
                     <i class="fab fa-github"></i> Code
                 </a>`;
         } else {
+            // FIXED: If video exists, viewMedia will open the video. If not, it opens the image.
+            const mediaTarget = project.video ? project.video : project.image;
             primaryBtn = `
-                <button class="btn btn-primary btn-sm" onclick="viewImage('${project.image}')">
+                <button class="btn btn-primary btn-sm" onclick="viewMedia('${mediaTarget}')">
                     <i class="fas fa-eye"></i> View
                 </button>`;
         }
@@ -147,9 +148,9 @@ function attachReadMoreListeners() {
     });
 }
 
-// --- 7. View Image Helper ---
-window.viewImage = function(imagePath) {
-    window.open(imagePath, '_blank');
+// --- 7. View Media Helper (Renamed from viewImage) ---
+window.viewMedia = function(mediaPath) {
+    window.open(mediaPath, '_blank');
 };
 
 // --- 8. Overlay Logic ---
