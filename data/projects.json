@@ -16,11 +16,21 @@
     "live_url": ""
   },
   {
-    "title": "Low-Poly Environment",
+    "title": "perfume",
     "category": "3d",
-    "description": "A stylized 3D scene modeled in Blender, exploring lighting and isometric perspectives.",
-    "image": "assets/3d-render.png",
+    "description": "A stylized 3D scene modeled in Blender, exploring lighting and isometric perspectives with glass like feel.",
+    "image": "assets/perfume.png",
     "link": "#",
     "live_url": ""
   }
+  {
+  "title": "Rain + Storm",
+  "category": "3d",
+  "description": "A  animation of a Strom wiht heavy  Rain modeled and rendered in Blender wiht EEVEE render.",
+  "image": "assets/rain_strom.png", 
+  "video": "https://res.cloudinary.com/yourname/video/upload/my-render.mp4",
+  "link": "#",
+  "live_url": ""
+}
 ]
+
