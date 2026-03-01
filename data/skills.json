@@ -2,7 +2,7 @@
   {
     "category": "Programming",
     "type": "tech",
-    "items": ["Python", "C", "R"]
+    "items": ["Python", "R"]
   },
   {
     "category": "AI & ML",
@@ -10,8 +10,14 @@
     "items": ["TensorFlow", "PyTorch", "Scikit-Learn", "NLP"]
   },
   {
-    "category": "Design & 3D",
+    "category": "Design",
     "type": "creative",
-    "items": ["Affinity Designer", "Blender", "Vector Illustration"]
+    "items": ["Affinity Designer", "Vector Illustration"]
+  },
+    {
+    "category": "3D Modeling",
+    "type": "creative",
+    "items": ["Blender"]
   }
 ]
+
