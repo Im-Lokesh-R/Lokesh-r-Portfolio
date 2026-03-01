@@ -26,8 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch("data/projects.json")
         .then(response => response.json())
         .then(projects => {
-            allProjects = projects;      // Store data globally
-            renderProjects('all');       // Show all projects on initial load
+            allProjects = projects;
+            renderProjects('all');
         })
         .catch(error => console.error("Error loading projects:", error));
 
@@ -70,14 +70,13 @@ function renderProjects(category) {
         const description = project.description || "";
         const needsReadMore = description.split(" ").length > 20;
 
-        // --- MEDIA LOGIC (IMAGE VS VIDEO) ---
         const mediaHTML = project.video 
             ? `<video autoplay loop muted playsinline class="project-media">
                 <source src="${project.video}" type="video/mp4">
                </video>`
             : `<img src="${project.image}" alt="${project.title}" class="project-media">`;
 
-        // --- BUTTON LOGIC ---
+        // --- IMPROVED BUTTON LOGIC ---
         let primaryBtn;
         if (project.category === 'ml') {
             primaryBtn = `
@@ -85,16 +84,16 @@ function renderProjects(category) {
                     <i class="fab fa-github"></i> Code
                 </a>`;
         } else {
-            // FIXED: If video exists, viewMedia will open the video. If not, it opens the image.
             const mediaTarget = project.video ? project.video : project.image;
+            // Use 'return false' or preventDefault behavior internally
             primaryBtn = `
-                <button class="btn btn-primary btn-sm" onclick="viewMedia('${mediaTarget}')">
+                <button type="button" class="btn btn-primary btn-sm" onclick="viewMedia('${mediaTarget}'); return false;">
                     <i class="fas fa-eye"></i> View
                 </button>`;
         }
 
         const liveBtn = project.live_url 
-            ? `<button class="btn btn-outline-primary btn-sm ms-2" onclick="openProject('${project.live_url}')">
+            ? `<button type="button" class="btn btn-outline-primary btn-sm ms-2" onclick="openProject('${project.live_url}', false); return false;">
                 <i class="fas fa-play"></i> Run Live
                </button>` 
             : '';
@@ -148,37 +147,68 @@ function attachReadMoreListeners() {
     });
 }
 
-// --- 7. View Media Helper (Renamed from viewImage) ---
+// --- 7. View Media Helper ---
 window.viewMedia = function(mediaPath) {
-    window.open(mediaPath, '_blank');
+    // If it's an image, we open in a new tab. If it's a video, we play in overlay.
+    if (mediaPath.match(/\.(jpeg|jpg|gif|png|webp)$/i)) {
+        window.open(mediaPath, '_blank');
+    } else {
+        openProject(mediaPath, true); 
+    }
 };
 
-// --- 8. Overlay Logic ---
-window.openProject = function(url) {
+// --- 8. Overlay Logic (Video Player Fix) ---
+window.openProject = function(url, isVideo = false) {
     const overlay = document.getElementById('projectOverlay');
     const frame = document.getElementById('projectFrame');
+    const videoPlayer = document.getElementById('projectVideo');
     const spinner = document.getElementById('loading-spinner');
 
-    if(overlay && frame) {
-        overlay.style.display = 'block';
-        if(spinner) spinner.style.display = 'block';
-        frame.style.display = 'none';
-        frame.src = url;
-        document.body.style.overflow = 'hidden';
-        
-        frame.onload = () => {
-            if(spinner) spinner.style.display = 'none';
-            frame.style.display = 'block';
-        };
+    if(!overlay) return;
+
+    overlay.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+
+    if (isVideo) {
+        if(frame) frame.style.display = 'none';
+        if(videoPlayer) {
+            videoPlayer.style.display = 'block';
+            videoPlayer.src = url;
+            videoPlayer.load(); // CRITICAL: Forces browser to recognize new video source
+            videoPlayer.play().catch(e => console.log("Auto-play prevented, showing controls."));
+        }
+        if(spinner) spinner.style.display = 'none';
+    } else {
+        if(videoPlayer) {
+            videoPlayer.pause();
+            videoPlayer.style.display = 'none';
+            videoPlayer.src = ""; // Clear source to stop background download
+        }
+        if(frame) {
+            frame.style.display = 'none';
+            frame.src = url;
+            if(spinner) spinner.style.display = 'block';
+            frame.onload = () => {
+                if(spinner) spinner.style.display = 'none';
+                frame.style.display = 'block';
+            };
+        }
     }
 };
 
 window.closeProject = function() {
     const overlay = document.getElementById('projectOverlay');
     const frame = document.getElementById('projectFrame');
-    if(overlay && frame) {
+    const videoPlayer = document.getElementById('projectVideo');
+
+    if(overlay) {
         overlay.style.display = 'none';
-        frame.src = ""; 
+        if(frame) frame.src = ""; 
+        if(videoPlayer) {
+            videoPlayer.pause();
+            videoPlayer.src = "";
+            videoPlayer.load();
+        }
         document.body.style.overflow = 'auto';
     }
 };
