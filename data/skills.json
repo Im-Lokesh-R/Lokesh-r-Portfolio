@@ -1,18 +1,17 @@
 [
-    {
-        "category": "Programming",
-        "items": ["Python","R"]
-    },
-    {
-        "category": "ML Frameworks",
-        "items": ["TensorFlow", "scikit-learn"]
-    },
-    {
-        "category": "Web Frameworks",
-        "items": ["Flask", "Django"]
-    },
-    {
-        "category": "Tools",
-        "items": ["Jupyter", "Pycharm"]
-    }
+  {
+    "category": "Programming",
+    "type": "tech",
+    "items": ["Python", "C", "R"]
+  },
+  {
+    "category": "AI & ML",
+    "type": "tech",
+    "items": ["TensorFlow", "PyTorch", "Scikit-Learn", "NLP"]
+  },
+  {
+    "category": "Design & 3D",
+    "type": "creative",
+    "items": ["Affinity Designer", "Blender", "Vector Illustration"]
+  }
 ]
