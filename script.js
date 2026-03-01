@@ -45,23 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
         lastScroll = currentScroll;
-
-        const navLinks = document.querySelectorAll(".nav-link");
-        const sections = document.querySelectorAll("section");
-        let current = "";
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 100;
-            if (currentScroll >= sectionTop) {
-                current = section.getAttribute("id");
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove("active");
-            if (link.getAttribute("href").substring(1) === current) {
-                link.classList.add("active");
-            }
-        });
     });
 });
 
@@ -93,6 +76,22 @@ function renderProjects(category) {
         const description = project.description || "";
         const needsReadMore = description.split(" ").length > 20;
 
+        // --- DYNAMIC BUTTON LOGIC ---
+        let primaryBtn;
+        if (project.category === 'ml') {
+            // ML projects show the Code/GitHub link
+            primaryBtn = `
+                <a href="${project.link}" target="_blank" class="btn btn-primary btn-sm">
+                    <i class="fab fa-github"></i> Code
+                </a>`;
+        } else {
+            // 3D/Design projects show a View button instead of Code
+            primaryBtn = `
+                <button class="btn btn-primary btn-sm" onclick="viewImage('${project.image}')">
+                    <i class="fas fa-eye"></i> View
+                </button>`;
+        }
+
         const liveBtn = project.live_url 
             ? `<button class="btn btn-outline-primary btn-sm ms-2" onclick="openProject('${project.live_url}')">
                 <i class="fas fa-play"></i> Run Live
@@ -115,9 +114,7 @@ function renderProjects(category) {
                         <p class="description" data-full-text="${description}">${description}</p>
                         ${needsReadMore ? '<a href="#" class="read-more">Read More</a>' : ''}
                         <div class="mt-3">
-                            <a href="${project.link}" target="_blank" class="btn btn-primary btn-sm">
-                                <i class="fab fa-github"></i> Code
-                            </a>
+                            ${primaryBtn}
                             ${liveBtn}
                         </div>
                     </div>
@@ -151,29 +148,44 @@ function attachReadMoreListeners() {
     });
 }
 
-// --- 7. Global Functions for Live Overlay ---
+// --- 7. Helper for Viewing Images ---
+window.viewImage = function(imagePath) {
+    // Opens the image in a new tab for a high-quality look
+    window.open(imagePath, '_blank');
+};
+
+// --- 8. Global Functions for Project Overlay (ML Apps) ---
 window.openProject = function(url) {
     const overlay = document.getElementById('projectOverlay');
     const frame = document.getElementById('projectFrame');
     const spinner = document.getElementById('loading-spinner');
 
-    overlay.style.display = 'block';
-    spinner.style.display = 'block';
-    frame.style.display = 'none';
-    frame.src = url;
-    document.body.style.overflow = 'hidden';
+    if(overlay && frame) {
+        overlay.style.display = 'block';
+        if(spinner) spinner.style.display = 'block';
+        frame.style.display = 'none';
+        frame.src = url;
+        document.body.style.overflow = 'hidden';
+        
+        frame.onload = () => {
+            if(spinner) spinner.style.display = 'none';
+            frame.style.display = 'block';
+        };
+    }
 };
 
 window.closeProject = function() {
     const overlay = document.getElementById('projectOverlay');
     const frame = document.getElementById('projectFrame');
 
-    overlay.style.display = 'none';
-    frame.src = ""; 
-    document.body.style.overflow = 'auto';
+    if(overlay && frame) {
+        overlay.style.display = 'none';
+        frame.src = ""; 
+        document.body.style.overflow = 'auto';
+    }
 };
 
-// --- 8. Smooth Scroll Helper ---
+// --- 9. Smooth Scroll ---
 window.scrollToSection = function(sectionId) {
     const section = document.getElementById(sectionId);
     if(section) {
