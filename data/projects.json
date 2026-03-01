@@ -1,14 +1,26 @@
 [
-    {
-        "title": "Titanic Survival Predictor",
-        "description": "A classic Machine Learning classification project predicting passenger survival using features like age, gender, and class with Scikit-Learn.",
-        "image": "assets/titanic.png",
-        "link": "https://github.com/Im-Lokesh-R/titanic_model-",
-        "live_url": "https://lokeshrloki-titanic-predictor.hf.space"
-    }
+  {
+    "title": "Titanic Survival Predictor",
+    "category": "ml",
+    "description": "A classic Machine Learning classification project predicting passenger survival using features like age, gender, and class with Scikit-Learn.",
+    "image": "assets/titanic.png",
+    "link": "https://github.com/Im-Lokesh-R/titanic_model-",
+    "live_url": "https://lokeshrloki-titanic-predictor.hf.space"
+  },
+  {
+    "title": "Minimalist Brand Identity",
+    "category": "design",
+    "description": "A series of geometric logo designs created in Affinity Designer, focusing on negative space and vector precision.",
+    "image": "assets/design-portfolio.png",
+    "link": "https://github.com/Im-Lokesh-R",
+    "live_url": ""
+  },
+  {
+    "title": "Low-Poly Environment",
+    "category": "3d",
+    "description": "A stylized 3D scene modeled in Blender, exploring lighting and isometric perspectives.",
+    "image": "assets/3d-render.png",
+    "link": "#",
+    "live_url": ""
+  }
 ]
-
-
-
-
-
