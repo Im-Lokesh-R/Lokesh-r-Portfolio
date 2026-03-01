@@ -10,7 +10,7 @@
   {
     "title": "Poster",
     "category": "design",
-    "description": "A poster designs created in Affinity Designer, focusing on anime manga pannel wiht a person photo with aesthetic vibe.",
+    "description": "A poster designs created in Affinity Designer, focusing on anime manga pannel with a person photo with aesthetic vibe.",
     "image": "assets/second_.png",
     "link": "#",
     "live_url": ""
@@ -18,7 +18,7 @@
     {
     "title": "Poster",
     "category": "design",
-    "description": "A poster designs created in Affinity Designer, focusing on anime manga pannel wiht mixed color vibe.",
+    "description": "A poster designs created in Affinity Designer, focusing on anime manga pannel with mixed color vibe.",
     "image": "assets/sixth_.png",
     "link": "#",
     "live_url": ""
@@ -52,11 +52,12 @@
   "category": "3d",
   "description": "A  animation of a Strom wiht heavy  Rain modeled and rendered in Blender wiht EEVEE render.",
   "image": "assets/rain_strom.png", 
-  "video": "https://res.cloudinary.com/yourname/video/upload/my-render.mp4",
+  "video": "https://res.cloudinary.com/dgyo3a0hy/video/upload/v1772341835/Ocean-StromRain_jwzzst.mov",
   "link": "#",
   "live_url": ""
 }
 ]
+
 
 
 
