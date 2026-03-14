@@ -76,16 +76,14 @@ function renderProjects(category) {
                </video>`
             : `<img src="${project.image}" alt="${project.title}" class="project-media">`;
 
-        // --- IMPROVED BUTTON LOGIC ---
         let primaryBtn;
         if (project.category === 'ml') {
             primaryBtn = `
-                <a href="${project.link}" target="_blank" class="btn btn-primary btn-sm">
+                <a href="${project.link}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
                     <i class="fab fa-github"></i> Code
                 </a>`;
         } else {
             const mediaTarget = project.video ? project.video : project.image;
-            // Use 'return false' or preventDefault behavior internally
             primaryBtn = `
                 <button type="button" class="btn btn-primary btn-sm" onclick="viewMedia('${mediaTarget}'); return false;">
                     <i class="fas fa-eye"></i> View
@@ -149,15 +147,14 @@ function attachReadMoreListeners() {
 
 // --- 7. View Media Helper ---
 window.viewMedia = function(mediaPath) {
-    // If it's an image, we open in a new tab. If it's a video, we play in overlay.
     if (mediaPath.match(/\.(jpeg|jpg|gif|png|webp)$/i)) {
-        window.open(mediaPath, '_blank');
+        window.open(mediaPath, '_blank', 'noopener,noreferrer');
     } else {
         openProject(mediaPath, true); 
     }
 };
 
-// --- 8. Overlay Logic (Video Player Fix) ---
+// --- 8. SECURE Overlay Logic ---
 window.openProject = function(url, isVideo = false) {
     const overlay = document.getElementById('projectOverlay');
     const frame = document.getElementById('projectFrame');
@@ -170,22 +167,30 @@ window.openProject = function(url, isVideo = false) {
     document.body.style.overflow = 'hidden';
 
     if (isVideo) {
-        if(frame) frame.style.display = 'none';
+        if(frame) {
+            frame.style.display = 'none';
+            frame.src = "";
+        }
         if(videoPlayer) {
             videoPlayer.style.display = 'block';
             videoPlayer.src = url;
-            videoPlayer.load(); // CRITICAL: Forces browser to recognize new video source
-            videoPlayer.play().catch(e => console.log("Auto-play prevented, showing controls."));
+            videoPlayer.load();
+            videoPlayer.play().catch(e => console.log("Auto-play prevented."));
         }
         if(spinner) spinner.style.display = 'none';
     } else {
         if(videoPlayer) {
             videoPlayer.pause();
             videoPlayer.style.display = 'none';
-            videoPlayer.src = ""; // Clear source to stop background download
+            videoPlayer.src = "";
         }
         if(frame) {
             frame.style.display = 'none';
+            // SECURITY: Sandboxing the iframe
+            // allow-scripts: Lets the ML model run
+            // allow-same-origin: Allows proper rendering
+            // allow-forms: Allows input on the embedded page
+            frame.setAttribute("sandbox", "allow-scripts allow-same-origin allow-forms allow-popups");
             frame.src = url;
             if(spinner) spinner.style.display = 'block';
             frame.onload = () => {
@@ -203,7 +208,10 @@ window.closeProject = function() {
 
     if(overlay) {
         overlay.style.display = 'none';
-        if(frame) frame.src = ""; 
+        if(frame) {
+            frame.src = ""; 
+            frame.removeAttribute("sandbox"); // Reset sandbox on close
+        }
         if(videoPlayer) {
             videoPlayer.pause();
             videoPlayer.src = "";
